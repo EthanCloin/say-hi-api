@@ -1,8 +1,8 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from .database import get_db
 
 
-bp = Blueprint("bookings", __name__, url_prefix=None)
+bp = Blueprint("main", __name__, url_prefix=None)
 
 
 @bp.get("/")
@@ -10,8 +10,6 @@ def index():
     return "Hello from Main"
 
 
-# TODO: build a GET endpoint which provides the HTML content that allows users to hit the /hi endpoint.
-# will be interesting to figure out how to style and size the content
 @bp.post("/hi")
 def say_hi():
     cxn = get_db()
@@ -22,4 +20,9 @@ def say_hi():
     count = cxn.execute(count_query).fetchone()["hello_count"]
     cxn.commit()
 
-    return f"Thanks for giving us Hello #{count}"
+    return render_template("fading-thanks.html", hello_count=count)
+
+
+@bp.get("/hi")
+def get_hi_btn():
+    return render_template("say-hi-button.html")

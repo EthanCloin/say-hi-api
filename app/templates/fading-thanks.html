@@ -1,0 +1,24 @@
+<style>
+    #fading-thanks {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: green;
+        opacity: 70%;
+        width: 55vw;
+        height: 10vh;
+        font-size: 2rem;
+        text-align: center;
+        color: white;
+        margin-right: 1em;
+        margin-left: auto;
+    }
+</style>
+<div id="fading-thanks">
+    <p>Thanks for giving us Hello #{{hello_count}}</p>
+</div>
+<script>
+    const p = document.getElementById("fading-thanks")
+    console.log(p)
+    setTimeout(() => p.remove(), 2000)
+</script>
